@@ -1,0 +1,43 @@
+version: '3'
+services:
+    web:
+        container_name: web
+        image: nginx
+        volumes:
+            - ./conf/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./backend:/var/www/html
+        ports:
+            - 8000:80
+        restart: always
+        depends_on:
+            - php
+    php:
+        container_name: php
+        build: docker
+        restart: always
+        volumes:
+            - ./conf/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - ./conf/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./backend:/var/www/html
+
+    # Contenedor de Composer para PHP 
+    composer:
+        container_name: composer
+        image: composer:2.5.5
+        volumes:
+            - ./backend:/app
+        command: install
+    # creamos la base de datos POSTGRES
+    # las variables de entorno son definidas en un archivo a parte
+    db:
+        container_name: postgres_db
+        image: postgres:10.1
+        restart: always
+        environment:
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        ports:
+            - 5433:5432
+        volumes:
+            - ./conf/postgres/:/docker-entrypoint-initdb.d/
