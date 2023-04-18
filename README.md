@@ -1,3 +1,3 @@
 ### Programacion Web Dinamica 2023
-*-
-# Preramos el entorno de desarrollo para crear nuestra app
+# Preparamos el entorno de desarrollo para crear nuestra app
+Utilizaremos Docker Compose para crear los servicios necesarios 
