@@ -11,6 +11,8 @@ services:
         restart: always
         depends_on:
             - php
+        
+
     php:
         container_name: php
         build: docker
@@ -19,6 +21,8 @@ services:
             - ./conf/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - ./conf/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
             - ./backend:/var/www/html
+        expose:
+            - 9000
 
     # Contenedor de Composer para PHP 
     composer:

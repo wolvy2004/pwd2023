@@ -1,13 +1,16 @@
 <?php
-namespace raiz\Models;
+namespace Raiz\ModelsCopia;
+use Raiz\Models\Persona;
 
 class Socio extends Persona{
     private $numSocio;
+    private $fechaIngreso;
 
-    function __construct($nombre, $dni, $numSocio)
+    function __construct($nombre, $dni, $numSocio, $fechaIngreso)
     {
         parent::__construct($nombre, $dni);
         $this->numSocio = $numSocio;
+        $this->fechaIngreso = $fechaIngreso;
     }
 
     public function setNumSocio($nuevoNumSocio){

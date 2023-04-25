@@ -1,27 +1,24 @@
 <?php 
-
-namespace Raiz\Models;
+namespace raiz\Models;
 
 Abstract class Persona{
     private $nombre;
     private $dni;
 
-    public function __construct($nombre, $dni)
+    function __construct($nombre, $dni)
     {
         $this->nombre = $nombre;
         $this->dni = $dni;
     }
-    
-    public function mostrar(){
+
+    public function setNombre($nuevoNombre){
+        $this->nombre = $nuevoNombre;
     }
-    public function getNombre():string
-    {
+    public function getNombre(){
         return $this->nombre;
     }
-    public function getDNI():int
-    {
+    
+    public function getDNI(){
         return $this->dni;
     }
-    
-
 }
