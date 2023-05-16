@@ -2,42 +2,31 @@
 declare(strict_types=1);
 namespace Raiz\Models;
 
-use Raiz\Aux\Serializador;
-use Error;
+use Raiz\Models\ModelBase;
 
-abstract class Persona implements Serializador
+class Persona extends ModelBase
 {
-    private $nombre;
+    private $nombre_apellido;
     private $dni;
 
-    function __construct(string $nombre, int $dni)
+    function __construct(string $nombre_apellido, int $dni)
     {
-        $this->nombre = $nombre;
+        $this->nombre_apellido = $nombre_apellido;
         $this->dni = $dni;
     }
 
     public function setNombre($nuevoNombre)
     {
-        $this->nombre = $nuevoNombre;
+        $this->nombre_apellido = $nuevoNombre;
     }
     public function getNombre()
     {
-        return $this->nombre;
+        return $this->nombre_apellido;
     }
 
     public function getDNI()
     {
         return $this->dni;
     }
-    /** @return mixed[] */
-    public function serializar(): array
-    {
-        throw new Error('Serialización no implementada.');
-    }
-
-    /** @param mixed[] $datos */
-    public static function deserializar(array $datos):Self
-    {
-        throw new Error('Deserialización no implementada.');
-    }
+    
 }

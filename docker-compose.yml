@@ -11,10 +11,18 @@ services:
         restart: always
         depends_on:
             - php
+            - db
+        env_file:
+            - .env
         environment:
-            - DB_NAME=pwd2023
-        
-
+            XDEBUG: remote_host=192.168.80.1 remote:port=9003
+            PHP_USER_ID: 1000
+        networks:
+            red_web:
+                 ipv4_address: 192.168.10.10
+            red_interna:
+                 ipv4_address: 192.168.20.10
+    
     php:
         container_name: php
         build: docker
@@ -25,7 +33,13 @@ services:
             - ./backend:/var/www/html
         expose:
             - 9000
-        
+        env_file:
+            - .env
+        environment:
+            XDEBUG: remote_host=192.168.32.1 remote:port=9003
+        networks:
+            red_interna:
+                 ipv4_address: 192.168.20.22
     # Contenedor de Composer para PHP 
     composer:
         container_name: composer
@@ -35,31 +49,33 @@ services:
         command: install
     # creamos la base de datos POSTGRES
     # las variables de entorno son definidas en un archivo a parte
+    
     db:
         container_name: postgres_db
-        image: postgres:10.1
+        image: postgres:14-alpine
         restart: always
         environment:
+            - USER_UID=1000
+            - USER_GID=1000
             - POSTGRES_DB=${DB_NAME}
             - POSTGRES_USER=${DB_USER}
             - POSTGRES_PASSWORD=${DB_PASSWORD}
-            
         ports:
             - 5433:5432
         volumes:
             - ./conf/postgres/:/docker-entrypoint-initdb.d/
-    
-    pgadmin:
-        image: dpage/pgadmin4
-        container_name: pgadmin4_container
-        restart: always
-        ports:
-            - "5050:80"
-        environment:
-            PGADMIN_DEFAULT_EMAIL: raj@nola.com
-            PGADMIN_DEFAULT_PASSWORD: admin
-            UID: 1000
-            
-            
-        volumes:
-            - ./pgadmin-data:/var/lib/pgadmin
+            - ./data/postgres:/var/lib/postgresql/data:delegated
+        networks:
+           red_interna:
+             ipv4_address: 192.168.20.20
+             
+
+networks:
+    red_web:
+        ipam:
+            config:
+              - subnet: 192.168.10.0/24
+    red_interna:
+        ipam:
+            config:
+              - subnet: 192.168.20.0/24
