@@ -53,7 +53,16 @@ Atributos de la clase **Libro**:
 * genero (Genero)
 * cant_paginas (int)
 * anio_publicacion (int)
-* estado(int) valor entre 0 y 1
+* estado(string) con tres posibles estados 
+
+  + **Activo**
+  + **Inactivo**
+  + **Prestado**
+
+siendo **Activo** el estado predeterminado.
+Estos estados son seteados con constante:
+ejemplo: inicializamos **estado:'$this->estado = static::ACTIVO'**
+donde **static::ACTIVO** corresponte a la constante **Const ACTIVO = "activo"**
 
 Atributos de la clase **Prestamo**:
 * id (int)
@@ -61,7 +70,7 @@ Atributos de la clase **Prestamo**:
 * libro (Libro)
 * fecha_desde (date)
 * fecha_hasta (date)
-* ?fecha_dev (date) este atributo se debe inicializar en null
+* fecha_dev (?date) este atributo se debe inicializar en null
 
 ### **Métodos especiales de esta Clase**
 ---
