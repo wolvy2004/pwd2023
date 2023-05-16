@@ -31,10 +31,6 @@ Atributos de la clase **Autor**:
 * id (int)
 * nombre_Apellido (string)
 
-Atributos de la clase **Autor**:
-* id (int)
-* nombre_Apellido (string)
-
 Atributos de la clase **Categoria**:
 * id (int)
 * descripcion (string)
@@ -54,6 +50,7 @@ Atributos de la clase **Libro**:
 * titulo (string)
 * editorial (Editorial)
 * autor (Autor[])
+* genero (Genero)
 * cant_paginas (int)
 * anio_publicacion (int)
 * estado(int) valor entre 0 y 1
