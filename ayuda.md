@@ -5,8 +5,7 @@
 el archivo .env define las variables de entorno de la aplicacion, 
 las cuales pueden ser accedidas por los servicios dentro del contenedor
 ~~~
-#### **ejecutar el siguiente script : sudo chmod +775 ./ -R dentro de la carpeta raiz del proyecto donde se encuentra el 
-docker-compose.yml**
+#### **ejecutar el siguiente script : sudo chmod +775 ./ -R dentro de la carpeta raiz del proyecto donde se encuentra el docker-compose.yml**
 ~~~
 debemos cambiar los permisos no podremos acceder al sitio, podriamos hacer en las carpeta correspondientes pero para
 fines prácticos lo hacemos en la carpeta raiz 
