@@ -3,10 +3,8 @@
     "description": "prueba",
     "type": "project",
     "autoload": {
-        "files": ["src/Models/funciones.php"],
         "psr-4": {
-            "Raiz\\": "src/",
-            "Raiz\\Test\\": "src/"
+            "Raiz\\": "src/"
         }
     },
     "authors": [
@@ -16,12 +14,15 @@
     ],
     "minimum-stability": "stable",
     "require-dev": {
-        "phpunit/phpunit": "^9.1"
+        "phpunit/phpunit": "^10.1"
     },
     "require": {
-        "monolog/monolog": "^3.3"
+        "monolog/monolog": "^3.3",
+        "slim/slim": "^4.11",
+        "vlucas/phpdotenv": "^5.5"
     },
     "scripts": {
-        "test" : "phpunit --version"
+        "test": "./vendor/bin/phpunit",
+        "version": "phpunit --version"
     }
 }

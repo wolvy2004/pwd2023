@@ -11,6 +11,8 @@ services:
         restart: always
         depends_on:
             - php
+        environment:
+            - DB_NAME=pwd2023
         
 
     php:
@@ -23,7 +25,7 @@ services:
             - ./backend:/var/www/html
         expose:
             - 9000
-
+        
     # Contenedor de Composer para PHP 
     composer:
         container_name: composer
@@ -41,7 +43,23 @@ services:
             - POSTGRES_DB=${DB_NAME}
             - POSTGRES_USER=${DB_USER}
             - POSTGRES_PASSWORD=${DB_PASSWORD}
+            
         ports:
             - 5433:5432
         volumes:
             - ./conf/postgres/:/docker-entrypoint-initdb.d/
+    
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: pgadmin4_container
+        restart: always
+        ports:
+            - "5050:80"
+        environment:
+            PGADMIN_DEFAULT_EMAIL: raj@nola.com
+            PGADMIN_DEFAULT_PASSWORD: admin
+            UID: 1000
+            
+            
+        volumes:
+            - ./pgadmin-data:/var/lib/pgadmin
