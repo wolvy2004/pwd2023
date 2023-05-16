@@ -1,17 +1,16 @@
 ### Pasos a seguir una vez clonado el repositorio
 
-## Ejecutar 
-`docker compose run composer composer install`
-
-este comando sirve para poder instalar todas las dependencias para correr la aplicacion ya que cuando el repositorio es clonado no tiene las mismas. estas Dependencias estan 
-declaradas en el archivo **composer.json**, si en vez de composer install ejecután composer update también se las instalará pero a la última version disponible. por
-ahora nos manejaremos con  **composer install** para que el versionado quede fijo.
-
-
 #### **modificar el archivo .env-ejemplo por .env con los datos para el acceso a su base de datos**
 ~~~
 el archivo .env define las variables de entorno de la aplicacion, 
 las cuales pueden ser accedidas por los servicios dentro del contenedor
+~~~
+#### **ejecutar el siguiente script : sudo chmod +775 ./ -R dentro de la carpeta raiz del proyecto donde se encuentra el 
+docker-compose.yml**
+~~~
+debemos cambiar los permisos no podremos acceder al sitio, podriamos hacer en las carpeta correspondientes pero para
+fines prácticos lo hacemos en la carpeta raiz 
+para acceso al sitio usar la siguiente direccion **ip: 192.168.20.10**
 ~~~
 
 #### **El docker compose ahora define una red para conexion interna**
