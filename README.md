@@ -17,7 +17,7 @@ Modelar las siguientes clases:
 
 2 - Todas las clases tiene que tener los métodos get y set para los atributos a excepcion del **id** que solo tendra el metodo **getId**
 
-3 - Todos los atributos tiene que ser **private**
+3 - Todos los atributos tienen que ser **private**
 
 Atributos de la clase **Socio**:
 * id (int)
@@ -55,7 +55,7 @@ Atributos de la clase **Libro**:
 * anio_publicacion (int)
 * estado(int) valor entre 0 y 1
 
-Atributos de la clase **PrestamoLibro**:
+Atributos de la clase **Prestamo**:
 * id (int)
 * socio (Socio)
 * libro (Libro)
